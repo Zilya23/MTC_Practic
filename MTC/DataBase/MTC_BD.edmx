@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище MTCModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Call">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Client" Type="int" />
+          <Property Name="ID_Services" Type="int" />
+          <Property Name="Call_Date" Type="date" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="ID_Status" Type="int" />
+          <Property Name="Receipt" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Call_Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="varchar(max)" />
+          <Property Name="Telephone_Number" Type="varchar" MaxLength="11" />
+          <Property Name="Addres" Type="varchar(max)" />
+          <Property Name="Regist_Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Town_Name" Type="varchar(max)" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Min_Coast" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Sale_Coast" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Post" Type="int" />
+          <Property Name="Login" Type="varchar(max)" />
+          <Property Name="Password" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Call_Call_Status">
+          <End Role="Call_Status" Type="Self.Call_Status" Multiplicity="0..1" />
+          <End Role="Call" Type="Self.Call" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Call_Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Call">
+              <PropertyRef Name="ID_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Call" Type="Self.Call" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Call">
+              <PropertyRef Name="ID_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Call" Type="Self.Call" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Call">
+              <PropertyRef Name="ID_Services" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_Post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище MTCModelContainer">
+          <EntitySet Name="Call" EntityType="Self.Call" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Call_Status" EntityType="Self.Call_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Call_Call_Status" Association="Self.FK_Call_Call_Status">
+            <End Role="Call_Status" EntitySet="Call_Status" />
+            <End Role="Call" EntitySet="Call" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_Client" Association="Self.FK_Call_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Call" EntitySet="Call" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_Service" Association="Self.FK_Call_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Call" EntitySet="Call" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Post" Association="Self.FK_User_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MTCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Call">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Client" Type="Int32" />
+          <Property Name="ID_Services" Type="Int32" />
+          <Property Name="Call_Date" Type="DateTime" Precision="0" />
+          <Property Name="Duration" Type="Int32" />
+          <Property Name="ID_Status" Type="Int32" />
+          <Property Name="Receipt" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Call_Status" Relationship="Self.FK_Call_Call_Status" FromRole="Call" ToRole="Call_Status" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Call_Client" FromRole="Call" ToRole="Client" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Call_Service" FromRole="Call" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Call_Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Call" Relationship="Self.FK_Call_Call_Status" FromRole="Call_Status" ToRole="Call" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone_Number" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Addres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Regist_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Call" Relationship="Self.FK_Call_Client" FromRole="Client" ToRole="Call" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Post" FromRole="Post" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Town_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Min_Coast" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Sale_Coast" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Call" Relationship="Self.FK_Call_Service" FromRole="Service" ToRole="Call" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Post" Type="Int32" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_User_Post" FromRole="User" ToRole="Post" />
+        </EntityType>
+        <Association Name="FK_Call_Call_Status">
+          <End Role="Call_Status" Type="Self.Call_Status" Multiplicity="0..1" />
+          <End Role="Call" Type="Self.Call" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Call_Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Call">
+              <PropertyRef Name="ID_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Call" Type="Self.Call" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Call">
+              <PropertyRef Name="ID_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Call_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Call" Type="Self.Call" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Call">
+              <PropertyRef Name="ID_Services" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_Post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MTCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Call" EntityType="Self.Call" />
+          <EntitySet Name="Call_Status" EntityType="Self.Call_Status" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Call_Call_Status" Association="Self.FK_Call_Call_Status">
+            <End Role="Call_Status" EntitySet="Call_Status" />
+            <End Role="Call" EntitySet="Call" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_Client" Association="Self.FK_Call_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Call" EntitySet="Call" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_Service" Association="Self.FK_Call_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Call" EntitySet="Call" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Post" Association="Self.FK_User_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MTCModelContainer" CdmEntityContainer="MTCEntities">
+          <EntitySetMapping Name="Call">
+            <EntityTypeMapping TypeName="MTCModel.Call">
+              <MappingFragment StoreEntitySet="Call">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Client" ColumnName="ID_Client" />
+                <ScalarProperty Name="ID_Services" ColumnName="ID_Services" />
+                <ScalarProperty Name="Call_Date" ColumnName="Call_Date" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+                <ScalarProperty Name="Receipt" ColumnName="Receipt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Call_Status">
+            <EntityTypeMapping TypeName="MTCModel.Call_Status">
+              <MappingFragment StoreEntitySet="Call_Status">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="MTCModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Telephone_Number" ColumnName="Telephone_Number" />
+                <ScalarProperty Name="Addres" ColumnName="Addres" />
+                <ScalarProperty Name="Regist_Date" ColumnName="Regist_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="MTCModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="MTCModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Town_Name" ColumnName="Town_Name" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Min_Coast" ColumnName="Min_Coast" />
+                <ScalarProperty Name="Sale_Coast" ColumnName="Sale_Coast" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MTCModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="MTCModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Post" ColumnName="ID_Post" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
