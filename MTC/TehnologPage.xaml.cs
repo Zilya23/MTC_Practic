@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MTC.DataBase;
 
 namespace MTC
 {
@@ -20,9 +21,37 @@ namespace MTC
     /// </summary>
     public partial class TehnologPage : Page
     {
+        public List<Client> clientList { get; set; }
         public TehnologPage()
         {
             InitializeComponent();
+            clientList = Core.GetClient();
+            this.DataContext = this;
+        }
+
+        private void lv_client_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            AddClientWindow addClient = new AddClientWindow();
+            addClient.ShowDialog();
+            if(addClient.DialogResult == true)
+            {
+                Update();
+            }
+        }
+
+        public void Update()
+        {
+            lv_client.ItemsSource = Core.GetClient();
+        }
+
+        private void btn_Service_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new TehnologServicePage());
         }
     }
 }
