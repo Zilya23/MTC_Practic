@@ -64,14 +64,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddCallWindow.xaml.cs">
+      <DependentUpon>AddCallWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddClientWindow.xaml.cs">
       <DependentUpon>AddClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegistPage.xaml.cs">
-      <DependentUpon>RegistPage.xaml</DependentUpon>
+    <Compile Include="AuthClientWindow.xaml.cs">
+      <DependentUpon>AuthClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CallCheckWindow.xaml.cs">
+      <DependentUpon>CallCheckWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientPage.xaml.cs">
+      <DependentUpon>ClientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OperatorPage.xaml.cs">
+      <DependentUpon>OperatorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PayCallWindow.xaml.cs">
+      <DependentUpon>PayCallWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RedServiceWindow.xaml.cs">
+      <DependentUpon>RedServiceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TehnologPage.xaml.cs">
       <DependentUpon>TehnologPage.xaml</DependentUpon>
@@ -79,6 +97,10 @@
     <Compile Include="TehnologServicePage.xaml.cs">
       <DependentUpon>TehnologServicePage.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddCallWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,7 +109,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AuthClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthorizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CallCheckWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,7 +178,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RegistPage.xaml">
+    <Page Include="OperatorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PayCallWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RedServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,6 +244,7 @@
       <DependentUpon>MTC_BD.edmx</DependentUpon>
       <LastGenOutput>MTC_BD.cs</LastGenOutput>
     </Content>
+    <Resource Include="img\del.png" />
     <Resource Include="img\plus2.png" />
     <Resource Include="img\logo.png" />
   </ItemGroup>

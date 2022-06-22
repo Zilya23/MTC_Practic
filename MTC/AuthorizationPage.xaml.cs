@@ -22,6 +22,7 @@ namespace MTC
     public partial class AuthorizationPage : Page
     {
         public static User user;
+        public static Client client { get; set; }
         public AuthorizationPage()
         {
             InitializeComponent();
@@ -38,6 +39,10 @@ namespace MTC
                 {
                     NavigationService.Navigate(new TehnologPage());
                 }
+                else if(user.ID_Post == 2)
+                {
+                    NavigationService.Navigate(new OperatorPage());
+                }
             }
             else
             {
@@ -47,7 +52,16 @@ namespace MTC
 
         private void btn_reg_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RegistPage());
+            AuthClientWindow authClientWindow = new AuthClientWindow();
+            authClientWindow.ShowDialog();
+            if(authClientWindow.DialogResult == true)
+            {
+                NavigationService.Navigate(new ClientPage(client));
+            }
+            else
+            {
+
+            }
         }
     }
 }

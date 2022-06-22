@@ -1,0 +1,75 @@
+﻿<Window x:Class="MTC.RedServiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MTC"
+        mc:Ignorable="d"
+        Title="RedServiceWindow" Height="337" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Город: "
+                   Grid.Column="1" Grid.ColumnSpan="3"
+                   Grid.Row="1"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
+        <TextBlock Text="Стоимость минуты: "
+                   Grid.Column="1" Grid.ColumnSpan="3"
+                   Grid.Row="2"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
+        <TextBlock Text="Стоимость минуты ночью: "
+                   Grid.Column="1" Grid.ColumnSpan="3"
+                   Grid.Row="3"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
+        <TextBlock x:Name="tb_town"
+                 Grid.Row="1"
+                 Grid.Column="4" Grid.ColumnSpan="3"
+                 FontSize="18"
+                 Height="40"/>
+        <TextBox x:Name="tb_coast"
+                 Grid.Row="2"
+                 Grid.Column="4" Grid.ColumnSpan="3"
+                 FontSize="18"
+                 Height="40"/>
+        <TextBox x:Name="tb_saleCoast"
+                 Grid.Row="3"
+                 Grid.Column="4" Grid.ColumnSpan="3"
+                 FontSize="18"
+                 Height="40"/>
+        <Button x:Name="btn_save"
+                Grid.Column="8" Grid.ColumnSpan="2"
+                Content="Сохранить"
+                FontSize="20"
+                Background="#FFEC1C22"
+                BorderBrush="Black" 
+                Click="btn_save_Click"/>
+        <Image x:Name="img_del"
+               Source="/img/del.png"
+               Width="35"
+               VerticalAlignment="Top"
+               MouseDown="img_del_MouseDown"/>
+    </Grid>
+</Window>

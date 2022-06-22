@@ -45,5 +45,16 @@ namespace MTC
         {
             lv_service.ItemsSource = Core.GetServices();
         }
+
+        private void lv_service_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lv_service.SelectedItem != null)
+            {
+                Service service = (sender as ListView).SelectedItem as Service;
+                RedServiceWindow redService = new RedServiceWindow(service);
+                redService.ShowDialog();
+                Update();
+            }
+        }
     }
 }

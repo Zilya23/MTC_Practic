@@ -114,5 +114,65 @@ namespace MTC
             bd_connection.connection.Service.Add(service);
             bd_connection.connection.SaveChanges();
         }
+
+        public static void DeleteService(Service service)
+        {
+            service.IsDeleted = true;
+            bd_connection.connection.SaveChanges();
+        }
+
+        public static void RedactServices(string townName, decimal coast, decimal saleCoast, Service service1)
+        {
+            service1.IsDeleted = true;
+            bd_connection.connection.SaveChanges();
+            Service service = new Service();
+            service.Town_Name = townName;
+            service.Date = DateTime.Now;
+            service.Min_Coast = coast;
+            service.Sale_Coast = saleCoast;
+            bd_connection.connection.Service.Add(service);
+            bd_connection.connection.SaveChanges();
+        }
+
+        public static List<Call> GetCalls()
+        {
+            return new List<Call>(bd_connection.connection.Call.ToList());
+        }
+
+        public static void AddCall(int idClient, int idSer, DateTime date, int durstion)
+        {
+            Call call = new Call();
+            call.ID_Client = idClient;
+            call.ID_Services = idSer;
+            call.Call_Date = date;
+            call.Duration = durstion;
+            call.ID_Status = 1;
+            bd_connection.connection.Call.Add(call);
+            bd_connection.connection.SaveChanges();
+        }
+
+        public static void CallOk(Call call)
+        {
+            call.ID_Status = 3;
+            bd_connection.connection.SaveChanges();
+        }
+
+        public static void CallNoOk(Call call)
+        {
+            call.ID_Status = 1;
+            bd_connection.connection.SaveChanges();
+        }
+
+        public static Client AuthClient(string number)
+        {
+            Client client = bd_connection.connection.Client.Where(x => x.Telephone_Number == number).FirstOrDefault();
+            return client;
+        }
+
+        public static List<Call> GetClietCall(int idClient)
+        {
+            return new List<Call>(bd_connection.connection.Call.Where(x => x.ID_Client == idClient).ToList());
+        }
+
     }
 }
