@@ -56,5 +56,10 @@ namespace MTC
                 Update();
             }
         }
+
+        private void btn_exit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AuthorizationPage());
+        }
     }
 }

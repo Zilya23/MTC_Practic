@@ -55,7 +55,6 @@
                   Grid.Row="1" Grid.RowSpan="6"
                   Grid.Column="1" Grid.ColumnSpan="8"
                   ItemsSource="{Binding clientList}"
-                  SelectionChanged="lv_client_SelectionChanged"
                   FontSize="20">
             <ListView.View>
                 <GridView>
@@ -73,5 +72,15 @@
                VerticalAlignment="Bottom"
                HorizontalAlignment="Right"
                MouseDown="Image_MouseDown"/>
+        <Button x:Name="btn_exit"
+                Content="Выйти"
+                Grid.Column="9"
+                Grid.Row="0"
+                Height="35"
+                FontSize="20"
+                Background="#FFB01014"
+                BorderBrush="Black"
+                VerticalAlignment="Top"
+                Click="btn_exit_Click"/>
     </Grid>
 </Page>

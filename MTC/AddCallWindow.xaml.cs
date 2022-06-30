@@ -49,5 +49,13 @@ namespace MTC
 
             }
         }
+
+        private void tb_dur_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if(!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

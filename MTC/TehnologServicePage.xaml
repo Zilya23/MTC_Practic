@@ -73,5 +73,15 @@
                VerticalAlignment="Bottom"
                HorizontalAlignment="Right"
                MouseDown="Image_MouseDown"/>
+        <Button x:Name="btn_exit"
+                Content="Выйти"
+                Grid.Column="9"
+                Grid.Row="0"
+                Height="35"
+                FontSize="20"
+                Background="#FFB01014"
+                BorderBrush="Black"
+                VerticalAlignment="Top"
+                Click="btn_exit_Click"/>
     </Grid>
 </Page>

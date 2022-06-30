@@ -35,7 +35,16 @@ namespace MTC
             }
             else
             {
+                MessageBox.Show("Клиент с данным номером не зарегистрирован в системе");
                 this.DialogResult = false;
+            }
+        }
+
+        private void tb_num_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
             }
         }
     }

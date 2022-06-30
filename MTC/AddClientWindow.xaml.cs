@@ -29,13 +29,36 @@ namespace MTC
             string name = tb_FIO.Text;
             string tel = tb_tel.Text;
             string addres = tb_addres.Text;
-            if(Core.AddClient(name, tel, addres))
+            if (tel.Length == 11)
             {
-                this.DialogResult = true;
+                if (Core.AddClient(name, tel, addres))
+                {
+                    this.DialogResult = true;
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь с таким телефоном уже существует");
+                }
             }
             else
             {
-                MessageBox.Show("Пользователь с таким телефоном уже существует");
+                MessageBox.Show("Введите верный номер");
+            }
+        }
+
+        private void tb_tel_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tb_FIO_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
             }
         }
     }

@@ -26,17 +26,47 @@ namespace MTC
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            string townName = tb_town.Text.Trim();
-            decimal coast = Convert.ToDecimal(tb_coast.Text.Trim());
-            decimal sale_coast = Convert.ToDecimal(tb_saleCoast.Text.Trim());
-            if(Core.AddService(townName, coast, sale_coast))
+            if (tb_town.Text.Trim().Length != 0 && tb_coast.Text.Trim().Length != 0 && tb_saleCoast.Text.Trim().Length != 0)
             {
-                this.DialogResult = true;
+                string townName = tb_town.Text.Trim();
+                decimal coast = Convert.ToDecimal(tb_coast.Text.Trim());
+                decimal sale_coast = Convert.ToDecimal(tb_saleCoast.Text.Trim());
+                if (townName.Length != 0)
+                {
+                    if (Core.AddService(townName, coast, sale_coast))
+                    {
+                        this.DialogResult = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Запись с данным гороод уже имелась, запись отредактирована");
+                        this.DialogResult = true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Введите название города");
+                }
             }
             else
             {
-                MessageBox.Show("Запись с данным гороод уже имелась, запись отредактирована");
-                this.DialogResult = true;
+                MessageBox.Show("Заполните все поля");
+            }
+        }
+
+        private void tb_town_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tb_coast_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0) && e.Text != ",")
+            {
+                e.Handled = true;
             }
         }
     }

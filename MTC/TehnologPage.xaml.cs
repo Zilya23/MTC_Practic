@@ -29,11 +29,6 @@ namespace MTC
             this.DataContext = this;
         }
 
-        private void lv_client_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             AddClientWindow addClient = new AddClientWindow();
@@ -52,6 +47,11 @@ namespace MTC
         private void btn_Service_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new TehnologServicePage());
+        }
+
+        private void btn_exit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AuthorizationPage());
         }
     }
 }

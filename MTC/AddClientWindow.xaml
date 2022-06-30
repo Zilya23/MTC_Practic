@@ -48,12 +48,14 @@
                  Grid.Row="1"
                  Grid.Column="2" Grid.ColumnSpan="3"
                  FontSize="18"
-                 Height="40"/>
+                 Height="40"
+                 PreviewTextInput="tb_FIO_PreviewTextInput"/>
         <TextBox x:Name="tb_tel"
                  Grid.Row="2"
                  Grid.Column="2" Grid.ColumnSpan="3"
                  FontSize="18"
-                 Height="40"/>
+                 Height="40"
+                 PreviewTextInput="tb_tel_PreviewTextInput"/>
         <TextBox x:Name="tb_addres"
                  Grid.Row="3"
                  Grid.Column="2" Grid.ColumnSpan="3"

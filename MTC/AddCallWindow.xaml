@@ -76,7 +76,8 @@
                  Grid.Row="4"
                  Grid.Column="2" Grid.ColumnSpan="3"
                  FontSize="18"
-                 Height="40"/>
+                 Height="40"
+                 PreviewTextInput="tb_dur_PreviewTextInput"/>
         <Button x:Name="btn_save"
                 Grid.Column="8" Grid.ColumnSpan="2"
                 Content="Сохранить"

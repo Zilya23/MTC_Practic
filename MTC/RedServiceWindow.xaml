@@ -53,12 +53,14 @@
                  Grid.Row="2"
                  Grid.Column="4" Grid.ColumnSpan="3"
                  FontSize="18"
-                 Height="40"/>
+                 Height="40"
+                 PreviewTextInput="tb_coast_PreviewTextInput"/>
         <TextBox x:Name="tb_saleCoast"
                  Grid.Row="3"
                  Grid.Column="4" Grid.ColumnSpan="3"
                  FontSize="18"
-                 Height="40"/>
+                 Height="40"
+                 PreviewTextInput="tb_coast_PreviewTextInput"/>
         <Button x:Name="btn_save"
                 Grid.Column="8" Grid.ColumnSpan="2"
                 Content="Сохранить"

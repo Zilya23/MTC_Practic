@@ -42,5 +42,13 @@ namespace MTC
             Core.DeleteService(service1);
             this.DialogResult = true;
         }
+
+        private void tb_coast_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0) && e.Text != ",")
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

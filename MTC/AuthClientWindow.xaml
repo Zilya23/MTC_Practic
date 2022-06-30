@@ -26,7 +26,8 @@
                  Margin="10, 0, 0, 0"
                  Grid.Row="2" Grid.ColumnSpan="2"
                  Width="240"
-                 Height="34"/>
+                 Height="34"
+                 PreviewTextInput="tb_num_PreviewTextInput"/>
         <Button x:Name="btn_Ok"
                 Content="Войти"
                 VerticalAlignment="Bottom"
